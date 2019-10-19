@@ -1,0 +1,24 @@
+---
+- name: Install Asterisk
+  apt:
+    name: asterisk
+    state: installed
+    update_cache: true
+
+- name: Configure
+  block:
+    - template: src=sip.conf.j2 dest=/etc/asterisk/sip.conf
+      notify:
+      - Restart Asterisk
+    - template: src=extensions.conf.j2 dest=/etc/asterisk/extensions.conf
+      notify:
+      - Restart Asterisk
+
+- name: Update Script And Cron Monthly
+  block:
+    - copy: src="{{ role_path }}/templates/blacklist_update.sh" dest=/usr/local/bin/blacklist_update.sh owner=root group=root mode=0755
+    - cron:
+        name: update blacklist
+        special_time: monthly
+        user: root
+        job: "nice -n10 /usr/local/bin/blacklist_update.sh"

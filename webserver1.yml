@@ -1,0 +1,8 @@
+- hosts: webserver1
+  remote_user: debian
+  connection: ssh
+  become: yes
+  become_user: root
+  roles:
+    - iptables
+    - asterisk

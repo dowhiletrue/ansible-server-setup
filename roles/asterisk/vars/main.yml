@@ -1,0 +1,3 @@
+---
+# vars file for asterisk
+sip_connections: '{{ vault_sip_connections }}'

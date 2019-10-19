@@ -1,0 +1,12 @@
+- hosts: local
+  connection: local
+  become: yes
+  roles:
+    # - noip
+    # - ssh
+    # - utils
+    #- nginx
+    #- apache
+    #- letsencrypt
+    - asterisk
+    - iptables

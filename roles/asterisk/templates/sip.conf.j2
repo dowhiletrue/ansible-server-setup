@@ -1,0 +1,16 @@
+[general]
+{% for sip_connection in sip_connections %}
+register => {{ sip_connection.username }}:{{ sip_connection.secret }}@sip.netvoip.ch/{{ sip_connection.number }}
+{% endfor %}
+
+{% for sip_connection in sip_connections %}
+[netvoip_{{ sip_connection.number }}]
+type=peer
+username={{ sip_connection.username }}
+secret={{ sip_connection.secret }}
+host=sip.netvoip.ch
+insecure=invite
+context=netvoip_in
+nat=yes
+
+{% endfor %}

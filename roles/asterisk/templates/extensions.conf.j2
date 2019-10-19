@@ -1,0 +1,14 @@
+[globals]
+
+[netvoip_in]
+{% for sip_connection in sip_connections %}
+exten => {{ sip_connection.number }},1,GotoIf(${DB_EXISTS(blacklist/${CALLERID(num)})}?blacklisted,s,1)
+{% endfor %}
+
+[blacklisted]
+exten => s,1,NoOP("This number is Blacklisted +++++++++++++++++++++++++++++")
+exten => s,2,Answer
+exten => s,3,Playtones(425/50,0/50)
+exten => s,4,Wait(10)
+exten => s,5,Hangup
+

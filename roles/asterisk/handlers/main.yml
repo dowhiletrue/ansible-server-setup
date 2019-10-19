@@ -1,0 +1,11 @@
+---
+# handlers file for asterisk
+- name: Start Asterisk
+  service:
+    name: asterisk
+    state: started
+
+- name: Restart Asterisk
+  service:
+    name: asterisk
+    state: restarted
