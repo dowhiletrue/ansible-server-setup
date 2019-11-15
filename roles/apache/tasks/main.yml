@@ -1,9 +1,13 @@
 ---
 - name: Install Apache
   apt:
-    name: apache2
+    name: "{{ packages }}"
     state: installed
     update_cache: true
+  vars:
+    packages:
+      - apache2
+      - libapache2-mod-php
 
 - name: Enable common httpd modules
   apache2_module: name={{ item }}
@@ -12,4 +16,5 @@
     - filter
     - deflate
     - headers
-    - ssl_module
+    - ssl
+    - php7.3
