@@ -8,6 +8,7 @@
     packages:
       - apache2
       - libapache2-mod-php
+      - libapache2-mod-perl2
 
 - name: Enable common httpd modules
   apache2_module: name={{ item }}
@@ -18,3 +19,4 @@
     - headers
     - ssl
     - php7.3
+    - perl
