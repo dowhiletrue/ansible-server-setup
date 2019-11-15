@@ -1,0 +1,18 @@
+---
+# tasks file for letsencrypt
+# Install dependencies
+- name: Certbot
+  apt:
+    name: "{{ packages }}"
+    state: latest
+    update_cache: true
+  vars:
+    packages:
+    - certbot
+    - python-certbot-apache
+
+- name: Generate Certificate for Domains
+  shell: certbot certonly --apache -d '{{ my_domain }}' -d '{{ my_domain_download }}' -d '{{ my_domain_www }}' -d '{{ my_domain_www2 }}' --email '{{ my_domain_email_address }}' --agree-tos -n
+
+- name: Restart Apache
+  systemd: name=apache2.service state=restarted

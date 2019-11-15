@@ -1,0 +1,7 @@
+---
+# vars file for letsencrypt
+my_domain: '{{ vault_my_domain }}'
+my_domain_download: '{{ vault_my_domain_download }}'
+my_domain_www: '{{ vault_my_domain_www }}'
+my_domain_www2: '{{ vault_my_domain_www2 }}'
+my_domain_email_address: '{{ vault_my_domain_email_address }}'
