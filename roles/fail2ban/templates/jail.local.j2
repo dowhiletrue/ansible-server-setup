@@ -8,3 +8,45 @@ banaction = iptables-multiport
 [sshd]
 enabled = true
 maxretry = 3
+
+[apache] 
+enabled = true 
+port = http,https 
+filter = apache-auth 
+logpath = /var/log/apache2/*error.log 
+maxretry = 3 
+bantime = 600 
+
+[apache-overflows] 
+enabled = true 
+port = http,https 
+filter = apache-overflows 
+logpath = /var/log/apache2/*error.log 
+maxretry = 3 
+bantime = 600
+
+[apache-noscript] 
+enabled = true 
+port = http,https 
+filter = apache-noscript 
+logpath = /var/log/apache2/*error.log 
+maxretry = 3 
+bantime = 600 
+
+[apache-badbots] 
+enabled = true 
+port = http,https 
+filter = apache-badbots 
+logpath = /var/log/apache2/*error.log 
+maxretry = 3 
+bantime = 600 
+
+[http-get-dos]
+enabled = true 
+port = http,https 
+filter = http-get-dos 
+logpath = /var/log/apache*/access.log 
+maxretry = 400 
+findtime = 400 
+bantime = 200 
+ction = iptables[name=HTTP, port=http, protocol=tcp]
