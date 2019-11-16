@@ -4,5 +4,8 @@
   become: yes
   become_user: root
   roles:
+    - fail2ban
     - iptables
     - asterisk
+    - apache
+    - letsencrypt
